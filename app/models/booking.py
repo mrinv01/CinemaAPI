@@ -14,3 +14,7 @@ class Booking(Base):
         back_populates="booking",
         cascade="all, delete-orphan",
     )
+    payments: Mapped[list["Payment"]] = relationship(
+        back_populates="booking",
+        cascade="all, delete-orphan",
+    )

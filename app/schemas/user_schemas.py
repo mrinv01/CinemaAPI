@@ -3,7 +3,7 @@ from typing import Optional
 
 from pydantic import EmailStr, Field
 
-from app.schemas.common import ORMBaseModel, PositiveID, Timestamp
+from app.schemas.common_schemas import ORMBaseModel, PositiveID, Timestamp
 
 
 class UserBase(ORMBaseModel):

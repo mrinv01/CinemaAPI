@@ -2,7 +2,7 @@ from typing import Literal, Optional
 
 from pydantic import Field
 
-from app.schemas.common import ORMBaseModel, PositiveID, Timestamp
+from app.schemas.common_schemas import ORMBaseModel, PositiveID, Timestamp
 
 HallType = Literal["2D", "3D", "IMAX", "VIP"]
 

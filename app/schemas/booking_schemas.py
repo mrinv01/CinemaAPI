@@ -1,6 +1,6 @@
 from typing import Optional
 
-from app.schemas.common import Money, ORMBaseModel, PositiveID, Timestamp
+from app.schemas.common_schemas import Money, ORMBaseModel, PositiveID, Timestamp
 
 
 class BookingBase(ORMBaseModel):

@@ -1,6 +1,6 @@
 from sqlalchemy import select
 from app.models import User
-from app.repositories.base import BaseRepository
+from app.repositories.base_repository import BaseRepository
 from app.database import async_session_maker
 
 

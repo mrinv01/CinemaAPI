@@ -3,7 +3,7 @@ from typing import Literal, Optional
 
 from pydantic import Field
 
-from app.schemas.common import Money, ORMBaseModel, PositiveID, Timestamp
+from app.schemas.common_schemas import Money, ORMBaseModel, PositiveID, Timestamp
 
 PaymentStatus = Literal["PENDING", "SUCCESS", "FAILED", "REFUNDED"]
 PaymentProvider = Literal["STRIPE", "PAYPAL", "APPLE_PAY", "GOOGLE_PAY"]

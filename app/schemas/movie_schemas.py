@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import Field
 
-from app.schemas.common import ORMBaseModel, PositiveID
+from app.schemas.common_schemas import ORMBaseModel, PositiveID
 
 
 class MovieBase(ORMBaseModel):

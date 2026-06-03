@@ -3,7 +3,7 @@ from typing import Literal, Optional
 
 from pydantic import Field, model_validator
 
-from app.schemas.common import Money, ORMBaseModel, PositiveID, Timestamp
+from app.schemas.common_schemas import Money, ORMBaseModel, PositiveID, Timestamp
 
 ShowtimeFormat = Literal["2D", "3D", "IMAX", "VIP"]
 ShowtimeStatus = Literal["SCHEDULED", "CANCELLED", "COMPLETED"]

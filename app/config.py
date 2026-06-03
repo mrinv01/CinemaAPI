@@ -8,6 +8,7 @@ class Settings(BaseSettings):
     DB_PASSWORD: str
     SECRET_KEY: str
     ALGORITHM: str
+    KINOPOISK_API_KEY: str
     model_config = SettingsConfigDict(env_file=".env")
 
 

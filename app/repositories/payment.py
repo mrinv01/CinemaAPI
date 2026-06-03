@@ -1,19 +1,22 @@
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from app.models import Payment
 from app.repositories.base import BaseRepository
-from app.schemas import PaymentCreate, PaymentUpdate
+from app.database import async_session_maker
 
 
-class PaymentRepository(BaseRepository[Payment, PaymentCreate, PaymentUpdate]):
-    def __init__(self, session: AsyncSession) -> None:
-        super().__init__(Payment, session)
+class PaymentRepository(BaseRepository):
+    model = Payment
 
-    async def get_by_transaction_id(self, transaction_id: str) -> Payment | None:
-        stmt = select(Payment).where(Payment.transaction_id == transaction_id)
-        return await self.session.scalar(stmt)
+    @classmethod
+    async def get_by_transaction_id(cls, transaction_id: str):
+        async with async_session_maker() as session:
+            stmt = select(Payment).where(Payment.transaction_id == transaction_id)
+            result = await session.execute(stmt)
+            return result.scalars().all()
 
-    async def get_by_external_payment_id(self, external_payment_id: str) -> Payment | None:
-        stmt = select(Payment).where(Payment.external_payment_id == external_payment_id)
-        return await self.session.scalar(stmt)
+    @classmethod
+    async def get_by_external_payment_id(cls, external_payment_id: str):
+        async with async_session_maker() as session:
+            stmt = select(Payment).where(Payment.external_payment_id == external_payment_id)
+            result = await session.execute(stmt)
+            return result.scalars().all()

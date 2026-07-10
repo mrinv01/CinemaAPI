@@ -1,4 +1,6 @@
 from fastapi import FastAPI, APIRouter
+from app.api.storage_api import router as storage_router
+from app.storage import object_storage
 
 
 def register_routes(app: FastAPI) -> None:
@@ -10,6 +12,7 @@ def register_routes(app: FastAPI) -> None:
         }
 
     app.include_router(root_router, tags=["Приветствие"])
+    app.include_router(storage_router)
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -19,6 +22,10 @@ def create_app() -> FastAPI:
     )
 
     register_routes(app)
+
+    @app.on_event("startup")
+    async def startup_event() -> None:
+        await object_storage.ensure_bucket()
     return app
 
 app = create_app()

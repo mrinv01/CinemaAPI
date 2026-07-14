@@ -1,8 +1,7 @@
 from app.repositories.ticket_repository import TicketRepository
-from app.services.base import BaseService
 
 
-class TicketService(BaseService[TicketRepository]):
+class TicketService:
     repository = TicketRepository
     entity_name = "Билет"
 

@@ -8,7 +8,7 @@ from app.storage import (
     ObjectStorageNotFoundError,
 )
 
-router = APIRouter(prefix="/storage", tags=["Object storage"])
+router = APIRouter(prefix="/storage", tags=["Объектное хранилище"])
 
 
 @router.post(

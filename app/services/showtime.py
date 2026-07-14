@@ -1,10 +1,9 @@
 from datetime import datetime
 
 from app.repositories.showtime_repository import ShowtimeRepository
-from app.services.base import BaseService
 
 
-class ShowtimeService(BaseService[ShowtimeRepository]):
+class ShowtimeService:
     repository = ShowtimeRepository
     entity_name = "Сеанс"
 

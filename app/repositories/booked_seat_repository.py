@@ -29,5 +29,6 @@ class BookedSeatRepository(BaseRepository):
                 booked_seat.showtime_id == showtime_id,
                 booked_seat.seat_id == seat_id,
             )
+
             result = await session.scalar(stmt)
             return result

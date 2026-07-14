@@ -12,4 +12,4 @@ class MovieRepository(BaseRepository):
          async with async_session_maker() as session:
              stmt = select(Movie).where(Movie.kp_id == kp_id)
              result = await session.execute(stmt)
-             return result.scalars.all()
+             return result.scalar_one_or_none()

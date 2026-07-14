@@ -29,7 +29,7 @@ class MovieBase(ORMBaseModel):
 
 
 class MovieCreate(MovieBase):
-    pass
+   pass
 
 
 class MovieUpdate(ORMBaseModel):

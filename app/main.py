@@ -4,6 +4,7 @@ from app.storage import object_storage
 from app.api.storage_api import router as storage_router
 from app.api.booked_seat_api import router as booked_seat_router
 from app.api.movie_api import router as movie_router
+from app.api.booking_api import router as booking_router
 
 def register_routes(app: FastAPI) -> None:
     root_router = APIRouter()
@@ -17,6 +18,7 @@ def register_routes(app: FastAPI) -> None:
     app.include_router(storage_router)
     app.include_router(booked_seat_router)
     app.include_router(movie_router)
+    app.include_router(booking_router)
 
 def create_app() -> FastAPI:
     app = FastAPI(

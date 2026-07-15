@@ -1,11 +1,6 @@
-from typing import Any
-
-from pydantic import BaseModel
-
 from app.schemas.movie_schemas import *
 from app.repositories.movie_repository import MovieRepository
 from app.exceptions.MovieExceptions import MovieNotFound
-from app.services.exceptions import EntityAlreadyExistsError, EntityNotFoundError
 
 
 class MovieService:

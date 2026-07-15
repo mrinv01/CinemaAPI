@@ -27,8 +27,8 @@ class BookedSeatService:
 
     @staticmethod
     async def create(data: BookedSeatCreate):
-        showtime = await ShowtimeRepository.get(data.showtime_id)
-        seat = await SeatRepository.get(data.seat_id)
+        showtime = await ShowtimeRepository.get_one_by_id(data.showtime_id)
+        seat = await SeatRepository.get_one_by_id(data.seat_id)
         existing = await BookedSeatRepository.get_by_showtime_and_seat(
             data.showtime_id,
             data.seat_id,

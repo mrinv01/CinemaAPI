@@ -40,7 +40,7 @@ def _build_s3_client() -> Any:
 
 
 def _is_not_found_error(exc: ClientError) -> bool:
-    error_code = exc.response.get("Error", {}).get("Code")
+    error_code = exc.response.get_one_by_id("Error").get_one_by_id("Code")
     return error_code in {"404", "NoSuchBucket", "NoSuchKey", "NotFound"}
 
 

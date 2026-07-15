@@ -40,7 +40,7 @@ class UserService:
         values = cls._dump_schema(data)
         password = values.pop("password")
 
-        if values.get("email") and await cls.repository.get_by_email(values["email"]):
+        if values.get_one_by_id("email") and await cls.repository.get_by_email(values["email"]):
             raise EntityAlreadyExistsError("Пользователь с таким email уже существует.")
         if await cls.repository.get_by_phone(values["phone"]):
             raise EntityAlreadyExistsError("Пользователь с таким телефоном уже существует.")
@@ -57,12 +57,12 @@ class UserService:
         if "password" in values:
             values["password_hash"] = cls.hash_password(values.pop("password"))
 
-        if values.get("email"):
+        if values.get_one_by_id("email"):
             existing = await cls.repository.get_by_email(values["email"])
             if existing is not None and existing.id != entity_id:
                 raise EntityAlreadyExistsError("Пользователь с таким email уже существует.")
 
-        if values.get("phone"):
+        if values.get_one_by_id("phone"):
             existing = await cls.repository.get_by_phone(values["phone"])
             if existing is not None and existing.id != entity_id:
                 raise EntityAlreadyExistsError("Пользователь с таким телефоном уже существует.")

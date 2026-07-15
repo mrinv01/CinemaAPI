@@ -8,16 +8,23 @@ class BaseRepository:
     model = None
 
     @classmethod
-    async def get(cls, entity_id: int):
+    async def get_one_or_none_by_id(cls, data_id: int):
         async with async_session_maker() as session:
-            return await session.get(cls.model, entity_id)
+            query = select(cls.model).filter_by(id=data_id)
+            result = await session.execute(query)
+            return result.scalar_one_or_none()
 
     @classmethod
-    async def get_all(cls, *, offset: int = 0, limit: int = 100):
+    async def get_one_by_id(cls, entity_id: int):
         async with async_session_maker() as session:
-            stmt = select(cls.model).offset(offset).limit(limit)
-            result = await session.scalars(stmt)
-            return result.all()
+            return await session.get_one_by_id(cls.model)
+
+    @classmethod
+    async def get_all(cls, **filter_by):
+        async with async_session_maker() as session:
+            query = select(cls.model).filter_by(**filter_by).order_by(cls.model.id)
+            result = await session.execute(query)
+            return result.scalars().all()
 
     @classmethod
     async def create(cls, **values):

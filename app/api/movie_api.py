@@ -19,6 +19,11 @@ async def get_movie(kp_id: int):
 async def create_movie(movie: MovieCreate):
     return await MovieService.create(movie)
 
+@router.put(path="/{movie_id}", summary="Обновление информации о фильме")
+async def update_movie(movie_id: int, update_data: MovieUpdate):
+    return await MovieService.update_movie(movie_id, update_data)
+
+
 @router.delete(path="/{kp_id}", summary="Удалить фильм из каталога по kp-id",)
 async def delete(kp_id: int):
     return await MovieService.delete(kp_id)

@@ -1,6 +1,6 @@
 from app.schemas.movie_schemas import *
 from app.repositories.movie_repository import MovieRepository
-from app.exceptions.MovieExceptions import MovieNotFound
+from app.exceptions.MovieExceptions import MovieByKpIdNotFound, MovieByIdNotFound
 
 
 class MovieService:
@@ -13,7 +13,7 @@ class MovieService:
     async def get_by_kp_id(kp_id: int):
         movies = await MovieRepository.get_by_kp_id(kp_id)
         if not movies:
-            raise MovieNotFound(kp_id)
+            raise MovieByKpIdNotFound(kp_id)
         return movies[0]
 
     @staticmethod
@@ -21,9 +21,17 @@ class MovieService:
         return await MovieRepository.create(**data.model_dump())
 
     @staticmethod
+    async def update_movie(movie_id: int, update_data: MovieUpdate):
+        update_dict = update_data.model_dump(exclude_none=True)
+        updated_rows = await MovieRepository.update_movie(movie_id, **update_dict)
+        if updated_rows == 0:
+            raise MovieByIdNotFound(movie_id)
+        return {"message": f"Фильм {movie_id} успешно обновлён"}
+
+    @staticmethod
     async def delete(kp_id: int):
         deleted = await MovieRepository.delete(id=kp_id)
         if deleted == 0:
-            raise MovieNotFound(kp_id)
+            raise MovieByKpIdNotFound(kp_id)
         return {"message": f"Фильм с kp-id {kp_id} успешно удалён."}
 

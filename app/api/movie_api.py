@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Path, Query, status
+from fastapi import APIRouter, status
 
 from app.schemas.movie_schemas import *
 from app.services.movie_service import MovieService
@@ -26,7 +26,7 @@ async def update_movie(movie_id: int, update_data: MovieUpdate):
 
 @router.delete(path="/{kp_id}", summary="Удалить фильм из каталога по kp-id",)
 async def delete(kp_id: int):
-    return await MovieService.delete(kp_id)
+    return await MovieService.delete_by_kp_id(kp_id)
 
 
 

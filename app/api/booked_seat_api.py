@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, Path, Query, status
+from fastapi import APIRouter, status
 
 from app.schemas.booked_seat_schemas import *
 from app.services.booked_seat_service import BookedSeatService

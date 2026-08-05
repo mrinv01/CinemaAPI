@@ -1,9 +1,10 @@
 from app.schemas.booked_seat_schemas import *
+
 from app.repositories.booked_seat_repository import BookedSeatRepository
 from app.repositories.seat_repository import SeatRepository
 from app.repositories.showtime_repository import ShowtimeRepository
-from app.services.exceptions import EntityAlreadyExistsError, EntityNotFoundError
-from app.exceptions.SeatExceptions import *
+
+from app.exceptions.GeneralException import EntityAlreadyExistsError, EntityNotFoundError
 from app.exceptions.ShowtimeExceptions import ShowtimeNotFound
 from app.exceptions.SeatExceptions import SeatNotFound
 

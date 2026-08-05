@@ -2,10 +2,11 @@ from datetime import datetime
 from decimal import Decimal
 
 from app.repositories.payment_repository import PaymentRepository
-from app.services.exceptions import EntityNotFoundError
+from app.services.base_service import BaseService
+from app.exceptions.GeneralException import EntityNotFoundError
 
 
-class PaymentService:
+class PaymentService(BaseService):
     repository = PaymentRepository
     entity_name = "Платеж"
 

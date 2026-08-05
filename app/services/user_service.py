@@ -4,12 +4,13 @@ from pydantic import BaseModel
 from passlib.context import CryptContext
 
 from app.repositories.user_repository import UserRepository
-from app.services.exceptions import EntityAlreadyExistsError, EntityNotFoundError, EmptyUpdateError
+from app.services.base_service import BaseService
+from app.exceptions.GeneralException import EntityAlreadyExistsError, EntityNotFoundError, EmptyUpdateError
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-class UserService:
+class UserService(BaseService):
     repository = UserRepository
     entity_name = "Пользователь"
 

@@ -24,7 +24,7 @@ class MovieBase(ORMBaseModel):
     poster: str = Field(min_length=1)
     backdrop: str = Field(min_length=1)
     logo: Optional[str] = None
-    persons: str = Field(min_length=1)
+    persons: list[dict] = Field(min_length=1)
     trailer: Optional[str] = None
 
 
@@ -51,7 +51,7 @@ class MovieUpdate(ORMBaseModel):
     poster: Optional[str] = Field(default=None, min_length=1)
     backdrop: Optional[str] = Field(default=None, min_length=1)
     logo: Optional[str] = None
-    persons: Optional[str] = Field(default=None, min_length=1)
+    persons: Optional[list[dict]] = Field(default=None, min_length=1)
     trailer: Optional[str] = None
 
 

@@ -1,5 +1,6 @@
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from app.database import Base, int_pk
+from sqlalchemy.dialects.postgresql import JSONB
 
 class Movie(Base):
     id: Mapped[int_pk]
@@ -21,7 +22,7 @@ class Movie(Base):
     poster: Mapped[str] = mapped_column(nullable=False)
     backdrop: Mapped[str] = mapped_column(nullable=False)
     logo: Mapped[str | None] = mapped_column(nullable=True)
-    persons: Mapped[str] = mapped_column(nullable=False)
+    persons: Mapped[list[dict]] = mapped_column(JSONB, nullable=False)
     trailer: Mapped[str | None] = mapped_column(nullable=True)
 
     showtimes: Mapped[list["Showtime"]] = relationship(

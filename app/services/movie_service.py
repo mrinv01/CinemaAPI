@@ -17,7 +17,7 @@ class MovieService(BaseService):
         movies = await MovieRepository.get_by_kp_id(kp_id)
         if not movies:
             raise MovieByKpIdNotFound(kp_id)
-        return movies[0]
+        return movies
 
 
 

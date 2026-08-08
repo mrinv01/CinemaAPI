@@ -5,7 +5,7 @@ from app.services.movie_service import MovieService
 
 router = APIRouter(prefix="/movie", tags=["Каталог фильмов"])
 
-@router.get(path="/", summary="Получить весь список фильмов", response_model= list[MovieRead])
+@router.get(path="/", summary="Получить весь список фильмов", response_model= list[MovieMinimal])
 async def get_movies():
     return await MovieService.get_all_movies()
 

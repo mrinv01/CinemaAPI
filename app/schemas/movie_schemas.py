@@ -27,6 +27,13 @@ class MovieBase(ORMBaseModel):
     persons: list[dict] = Field(min_length=1)
     trailer: Optional[str] = None
 
+class MovieMinimal(ORMBaseModel):
+    id: PositiveID
+    kp_id: int = Field(gt=0)
+    name: str = Field(min_length=1, max_length=255)
+    genres: str = Field(min_length=1)
+    age_rating: int = Field(ge=0, le=21)
+    poster: str = Field(min_length=1)
 
 class MovieCreate(MovieBase):
    pass
